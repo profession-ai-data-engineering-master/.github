@@ -53,7 +53,7 @@ copertura dei test, type checking statico e CI.
 
 ---
 
-### ✅ Corso 2 · Programmazione con Python — Analisi indici azionari S&P 500 ed EURO STOXX 50
+### ✅ Corso 2 · Python Data Toolkit: NumPy, Pandas, Pyplot — Analisi indici azionari S&P 500 ed EURO STOXX 50
 
 > [`profession_ai_data_engineering_progetto2`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto2)
 
