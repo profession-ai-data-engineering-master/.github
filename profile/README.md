@@ -1,19 +1,27 @@
-# Data Engineering — Portfolio dei progetti
+# Master Professionale in Data Engineering — Portfolio
 
-Questa organizzazione raccoglie i progetti sviluppati lungo il percorso di
-**Data Engineering**: dall'ingegneria del software (Clean Architecture, testing,
-CI/CD) all'analisi dati, dai database SQL/NoSQL all'elaborazione distribuita,
-fino alle pipeline cloud end-to-end.
+Questa organizzazione raccoglie i progetti realizzati lungo il **Master
+Professionale in Data Engineering** di [ProfessionAI](https://www.profession.ai/corsi/master-data-engineering/):
+**11 corsi professionalizzanti** e **11 progetti pratici** (~400 ore) che
+coprono l'intero spettro del mestiere — dall'ingegneria del software
+all'analisi dati, dai database SQL/NoSQL ai Big Data, fino alle pipeline cloud
+end-to-end. Percorso completato e **certificato**.
 
-I progetti vengono **sistemati e documentati in modo incrementale**. Questo
-indice viene aggiornato man mano: ogni progetto passa da 🚧 *in lavorazione* a
-✅ *pronto* una volta completato il refactoring e la documentazione.
+Ogni progetto nasce da un caso di business reale del corrispondente corso. I
+repository vengono **sistemati e documentati in modo incrementale**: questo
+indice viene aggiornato man mano, e ogni progetto passa da 🚧 *in lavorazione* a
+✅ *pronto* una volta completati refactoring e documentazione.
+
+**Stack del percorso:** Python · NumPy/Pandas · SQL (MySQL/MariaDB) · NoSQL
+(MongoDB, Cassandra, DynamoDB, Neo4j) · BeautifulSoup/Selenium · scikit-learn ·
+Apache Spark (Databricks, Zeppelin, EMR) · AWS (S3, Glue, Kinesis, Redshift,
+Step Functions) · Azure Data Factory · Snowflake.
 
 ---
 
 ## Progetti pronti
 
-### ✅ Progetto 1 — Household Expense Manager
+### ✅ Corso 1 · Programmazione con Python — Household Expense Manager
 
 > [`profession_ai_data_engineering_progetto1`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto1)
 
@@ -47,23 +55,26 @@ copertura dei test, type checking statico e CI.
 
 ## In lavorazione
 
-I progetti seguenti sono in fase di sistemazione/refactoring e verranno censiti
-qui in dettaglio man mano che vengono completati.
+Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
+seguono il programma ufficiale del master; verranno censiti qui in dettaglio
+man mano che vengono completati.
 
-| # | Progetto | Tema | Stato |
-|---|----------|------|-------|
-| 2  | `profession_ai_data_engineering_progetto2` | Analisi indici azionari (S&P 500 ed EURO STOXX 50) con pandas | 🚧 In lavorazione |
-| 3  | `profession_ai_data_engineering_progetto3` | Feature engineering clienti bancari — tabella denormalizzata SQL | 🚧 In lavorazione |
-| 4  | `profession_ai_data_engineering_progetto4` | Rubrica contatti con MongoDB (document store, query e update) | 🚧 In lavorazione |
-| 5  | `profession_ai_data_engineering_progetto5` | *(da definire)* | 🚧 In lavorazione |
-| 6  | `profession_ai_data_engineering_progetto6` | *(da definire)* | 🚧 In lavorazione |
-| 7  | `profession_ai_data_engineering_progetto7` | *(da definire)* | 🚧 In lavorazione |
-| 8  | `profession_ai_data_engineering_progetto8_databricks` · `…_zeppelin` | Elaborazione distribuita con Spark (Databricks / Zeppelin) | 🚧 In lavorazione |
-| 9  | `profession_ai_data_engineering_progetto9` | CryptoData Insights — pipeline E2E su AWS (S3 · Glue · Redshift · Step Functions) | 🚧 In lavorazione |
-| 10 | `profession_ai_data_engineering_progetto10` | Pipeline di orchestrazione dati film con Azure Data Factory | 🚧 In lavorazione |
-| 11 | `profession_ai_data_engineering_progetto11` | Gestione dati pazienti con Snowflake (data warehouse, RBAC, GDPR) | 🚧 In lavorazione |
-| —  | `creazione_dataset_cassandra_movielens` | Creazione dataset MovieLens su Apache Cassandra | 🚧 In lavorazione |
+| Corso | Progetto · Repository | Tema | Stack | Stato |
+|:-----:|-----------------------|------|-------|:-----:|
+| 2  | Analisi indici azionari `…progetto2` | Analisi dell'andamento di S&P 500 ed EURO STOXX 50 (rendimenti, volatilità, volumi) | NumPy · Pandas · Matplotlib | 🚧 |
+| 3  | Clienti banca `…progetto3` | Feature engineering: tabella denormalizzata di indicatori comportamentali da dati transazionali | SQL · MySQL/MariaDB | 🚧 |
+| 4  | Rubrica contatti `…progetto4` | Gestione e interrogazione di una rubrica document-oriented | MongoDB · NoSQL | 🚧 |
+| 4  | Dataset MovieLens `creazione_dataset_cassandra_movielens` | Creazione di un dataset MovieLens su database colonna-famiglia | Apache Cassandra · NoSQL | 🚧 |
+| 5  | Web scraping `…progetto5` | Scraping dei titoli di una libreria online (pagine statiche e dinamiche) | Python · BeautifulSoup · Selenium | 🚧 |
+| 6  | Preprocessing & Feature Eng. `…progetto6` | Pre-processing di un dataset di rilevazione del tumore al seno | scikit-learn · PCA · SMOTE | 🚧 |
+| 7  | Fondamenti ML `…progetto7` | Previsione della progressione del diabete in pazienti a rischio | scikit-learn · regressione · classificazione · clustering | 🚧 |
+| 8  | Big Data su Wikipedia `…progetto8_databricks` · `…_zeppelin` | Processing e analisi dell'intero dump di Wikipedia | Apache Spark · Spark SQL · Databricks · Zeppelin · AWS EMR | 🚧 |
+| 9  | CryptoData Insights `…progetto9` | Pipeline E2E in cloud per analizzare Bitcoin e Monero | AWS S3 · Glue · Kinesis · Redshift · Step Functions | 🚧 |
+| 10 | Dataset film `…progetto10` | Orchestrazione di una pipeline di trasformazione su un dataset di film | Azure Data Factory · Blob Storage · Stream Analytics | 🚧 |
+| 11 | Dati pazienti `…progetto11` | Data management & security dei dati clinici di un ospedale (RBAC, GDPR) | Snowflake · Data Warehouse | 🚧 |
+
+> I nomi repository sono abbreviati con il prefisso comune `profession_ai_data_engineering_`.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetto 1 censito; restanti progetti in sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetto 1 censito in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
