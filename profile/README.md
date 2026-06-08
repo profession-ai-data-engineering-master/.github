@@ -53,6 +53,39 @@ copertura dei test, type checking statico e CI.
 
 ---
 
+### ✅ Corso 2 · Programmazione con Python — Analisi indici azionari S&P 500 ed EURO STOXX 50
+
+> [`profession_ai_data_engineering_progetto2`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto2)
+
+Analisi esplorativa a **10 anni** di due indici azionari globali — **S&P 500**
+(USA) ed **EURO STOXX 50** (Europa) — per ricavare insight utili alle decisioni
+di investimento: rendimenti percentuali, volatilità e volumi di scambio.
+
+Più che un semplice script di calcolo, il progetto è impostato su un **framework
+metodologico riconosciuto**: il flusso segue le 5 fasi di **OSEMN** (Obtain ·
+Scrub · Explore · Model · iNterpret), scelto motivatamente rispetto a CRISP-DM,
+così da garantire un processo strutturato e ripetibile.
+
+**Analisi svolte**
+- **Q1 — Rendimenti percentuali** giornaliero/mensile/annuale, con **performance
+  cumulata** a confronto tra i due indici.
+- **Q2 — Rendimento medio per giorno della settimana**, interpretato alla luce di
+  fenomeni documentati (*reverse weekend effect*, composizione settoriale USA/Europa).
+- **Q3 — Giornate di rendimento estremo** trattate come **outlier detection** con
+  il **metodo IQR** (preferito allo Z-score perché non assume normalità), e
+  ricondotte a eventi reali di mercato.
+- **Q4 — Volume medio giornaliero** di scambi a confronto tra i due indici.
+
+**Qualità & metodo**
+- 🧭 Processo guidato dal framework **OSEMN**, con scelte progettuali esplicitate.
+- 📒 **Data Dictionary** formale (tipi, business rules, semantica del volume) come presidio di qualità sui dati.
+- 🧹 Scrub mirato ai dati di mercato: uniformazione fusi orari in UTC, allineamento sul **calendario di trading comune**, rimozione di volumi nulli.
+- 📈 Visualizzazioni **Matplotlib** e interpretazione orientata all'investitore (diversificazione *core-satellite*, timing, liquidità/slippage).
+
+**Stack:** Python · Pandas · Matplotlib · OSEMN · Jupyter Notebook
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -61,7 +94,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 2  | Analisi indici azionari `…progetto2` | Analisi dell'andamento di S&P 500 ed EURO STOXX 50 (rendimenti, volatilità, volumi) | NumPy · Pandas · Matplotlib | 🚧 |
 | 3  | Clienti banca `…progetto3` | Feature engineering: tabella denormalizzata di indicatori comportamentali da dati transazionali | SQL · MySQL/MariaDB | 🚧 |
 | 4  | Rubrica contatti `…progetto4` | Gestione e interrogazione di una rubrica document-oriented | MongoDB · NoSQL | 🚧 |
 | 4  | Dataset MovieLens `creazione_dataset_cassandra_movielens` | Creazione di un dataset MovieLens su database colonna-famiglia | Apache Cassandra · NoSQL | 🚧 |
@@ -77,4 +109,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetto 1 censito in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1 e 2 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
