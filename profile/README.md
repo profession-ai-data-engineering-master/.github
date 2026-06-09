@@ -86,6 +86,39 @@ così da garantire un processo strutturato e ripetibile.
 
 ---
 
+### ✅ Corso 3 · SQL — Analisi dei clienti di una banca
+
+> [`profession_ai_data_engineering_progetto3`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto3)
+
+Costruzione di una **tabella denormalizzata di feature comportamentali** (una riga per
+cliente) per alimentare modelli di *machine learning* supervisionato, a partire da un
+database bancario **MySQL 8**. Il caso di business: **Banking Intelligence** vuole prevedere
+abbandono, rischio e frodi dei clienti partendo dai dati transazionali e dal possesso di prodotti.
+
+Il cuore è la vista **`DATI_DENORMALIZZATI_BANCA`** — **27 colonne** (`id_cliente` + 26
+feature) ottenute con `LEFT JOIN` `cliente → conto → transazioni` e aggregazioni condizionali
+(`CASE`) su segno della transazione e tipologia di conto: numero e importo di entrate/uscite,
+in totale e per ciascuna delle 4 tipologie di conto.
+
+Più che la sola query, il progetto cura **riproducibilità, qualità e leggibilità** fino a
+livello di vetrina: chiunque può alzare l'ambiente e interrogare i dati in un comando.
+
+**Cosa contiene**
+- 🧱 **Vista di feature engineering**: una-riga-per-cliente, 26 indicatori comportamentali documentati uno a uno.
+- 🧭 **Tour guidato** dentro Adminer: viste `tour_*` che traducono le feature in 5 domande di business (churn, rischio, valore, segmentazione, anomalie/frodi).
+- ⚡ **Ottimizzazione dello schema** dimostrata e misurata: da **~1,55 s a ~120 ms** con chiavi e indice *covering*, con ripristino dello schema originale.
+
+**Qualità & ingegneria**
+- 🐳 **Ambiente Docker monocomando** (`run.sh`/`run.ps1`): MySQL + Adminer, dump scaricato in fase di build, healthcheck, vista e tour caricati automaticamente.
+- 🔎 **Adminer** (web UI) con utente di **sola lettura** dedicato: si esplora il DB senza credenziali amministrative.
+- ✅ **Asserzioni di validazione** in SQL (`SIGNAL`): una-riga-per-cliente, coerenza tra totali e somme per tipologia, range di età, assenza di `NULL` inattesi.
+- 🧹 **Lint SQL** con **SQLFluff** (dialect MySQL) e **CI GitHub Actions** che a ogni push/PR avvia il DB, crea vista e tour, ed esegue asserzioni e lint.
+- 📚 **Documentazione**: data dictionary delle 26 feature + diagramma **ER** (Mermaid).
+
+**Stack:** SQL · MySQL 8 · Docker · Adminer · SQLFluff · GitHub Actions
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -94,7 +127,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 3  | Clienti banca `…progetto3` | Feature engineering: tabella denormalizzata di indicatori comportamentali da dati transazionali | SQL · MySQL/MariaDB | 🚧 |
 | 4  | Rubrica contatti `…progetto4` | Gestione e interrogazione di una rubrica document-oriented | MongoDB · NoSQL | 🚧 |
 | 4  | Dataset MovieLens `creazione_dataset_cassandra_movielens` | Creazione di un dataset MovieLens su database colonna-famiglia | Apache Cassandra · NoSQL | 🚧 |
 | 5  | Web scraping `…progetto5` | Scraping dei titoli di una libreria online (pagine statiche e dinamiche) | Python · BeautifulSoup · Selenium | 🚧 |
@@ -109,4 +141,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1 e 2 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2 e 3 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
