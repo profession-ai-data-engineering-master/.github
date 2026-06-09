@@ -96,7 +96,7 @@ man mano che vengono completati.
 |:-----:|-----------------------|------|-------|:-----:|
 | 3  | Clienti banca `…progetto3` | Feature engineering: tabella denormalizzata di indicatori comportamentali da dati transazionali | SQL · MySQL/MariaDB | 🚧 |
 | 4  | Rubrica contatti `…progetto4` | Gestione e interrogazione di una rubrica document-oriented | MongoDB · NoSQL | 🚧 |
-| 4  | Dataset MovieLens `creazione_dataset_cassandra_movielens` | Creazione di un dataset MovieLens su database colonna-famiglia | Apache Cassandra · NoSQL | 🚧 |
+| 4 · extra | Dataset MovieLens `…progetto4_extra` | **Progetto extra, realizzato in autonomia** (oltre al programma) per approfondire la parte NoSQL: creazione di un dataset MovieLens su database colonna-famiglia | Apache Cassandra · NoSQL | 🚧 |
 | 5  | Web scraping `…progetto5` | Scraping dei titoli di una libreria online (pagine statiche e dinamiche) | Python · BeautifulSoup · Selenium | 🚧 |
 | 6  | Preprocessing & Feature Eng. `…progetto6` | Pre-processing di un dataset di rilevazione del tumore al seno | scikit-learn · PCA · SMOTE | 🚧 |
 | 7  | Fondamenti ML `…progetto7` | Previsione della progressione del diabete in pazienti a rischio | scikit-learn · regressione · classificazione · clustering | 🚧 |
