@@ -168,7 +168,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 4 · extra | Dataset MovieLens `…progetto4_extra` | **Progetto extra, realizzato in autonomia** (oltre al programma) per approfondire la parte NoSQL: creazione di un dataset MovieLens su database colonna-famiglia | Apache Cassandra · NoSQL | 🚧 |
 | 5  | Web scraping `…progetto5` | Scraping dei titoli di una libreria online (pagine statiche e dinamiche) | Python · BeautifulSoup · Selenium | 🚧 |
 | 6  | Preprocessing & Feature Eng. `…progetto6` | Pre-processing di un dataset di rilevazione del tumore al seno | scikit-learn · PCA · SMOTE | 🚧 |
 | 7  | Fondamenti ML `…progetto7` | Previsione della progressione del diabete in pazienti a rischio | scikit-learn · regressione · classificazione · clustering | 🚧 |
