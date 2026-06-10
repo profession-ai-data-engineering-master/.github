@@ -134,9 +134,9 @@ con i compromessi dichiarati apertamente nel README — incluso quando una
 tecnica di scala *non* serve.
 
 **Cosa contiene**
-- 🔎 Le 6 query + 2 update della consegna come **modulo dati tipizzato**
-  (`db.py` + `queries.py`) con runner `solution.py`: aggregation pipeline con
-  `$expr`/`$cond`/`$isArray`, `$unwind`, `$group`/`$avg`.
+- 🔎 Le 6 query + 2 update della consegna come **package Python tipizzato**
+  (`contacts/`: connessione, query, runner — entrypoint `python -m contacts`):
+  aggregation pipeline con `$expr`/`$cond`/`$isArray`, `$unwind`, `$group`/`$avg`.
 - 🧩 Gestione del campo telefono string|array **in un punto solo**: la stessa
   normalizzazione `$isArray`/`$cond` serve query e append (`$concatArrays`);
   niente upsert sull'update di un contatto esistente, così un refuso nel nome
