@@ -119,6 +119,47 @@ livello di vetrina: chiunque può alzare l'ambiente e interrogare i dati in un c
 
 ---
 
+### ✅ Corso 4 · Database NoSQL — Rubrica di contatti document-oriented su MongoDB
+
+> [`profession_ai_data_engineering_progetto4`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto4)
+
+Gestione e interrogazione di una **rubrica di contatti** su **MongoDB**: 6 query
+e 2 update su un dataset volutamente **eterogeneo** (campi opzionali, telefoni
+talvolta stringa e talvolta lista) — il terreno tipico del document model. Il
+caso di business: **DigitalConnect** vuole una rubrica flessibile per contatti
+con informazioni disomogenee.
+
+Su 11 documenti il valore non è la scala: è il **giudizio di modellazione**,
+con i compromessi dichiarati apertamente nel README — incluso quando una
+tecnica di scala *non* serve.
+
+**Cosa contiene**
+- 🔎 Le 6 query + 2 update della consegna come **modulo dati tipizzato**
+  (`db.py` + `queries.py`) con runner `solution.py`: aggregation pipeline con
+  `$expr`/`$cond`/`$isArray`, `$unwind`, `$group`/`$avg`.
+- 🧩 Gestione del campo telefono string|array **in un punto solo**: la stessa
+  normalizzazione `$isArray`/`$cond` serve query e append (`$concatArrays`);
+  niente upsert sull'update di un contatto esistente, così un refuso nel nome
+  non crea documenti fantasma.
+- 🧭 **Scelte di modellazione** esplicite: chiave naturale dichiarata
+  imperfetta, indice univoco come **vincolo di integrità** (non
+  ottimizzazione), embedding vs referencing, valori mancanti non mascherati
+  da default.
+
+**Qualità & ingegneria**
+- 🐳 **Ambiente Docker monocomando**: `docker compose up` → MongoDB 7
+  standalone + seed automatico (healthcheck anti-race, indice univoco creato
+  *prima* dell'import come gate di integrità sul dataset).
+- ✅ **13 test pytest** con oracoli calcolati dal dataset e regressioni mirate
+  (append che resta piatto, `$exists` su path annidato, `DuplicateKeyError`
+  sul duplicato), su un DB di test isolato e riseminato a ogni test.
+- 🧹 Lint/format con **ruff** e **CI GitHub Actions** con MongoDB come service
+  container; dipendenze **pinnate** (stesse versioni in locale e in CI).
+
+**Stack:** Python · MongoDB · pymongo · Docker · pytest · ruff · GitHub Actions
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -127,7 +168,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 4  | Rubrica contatti `…progetto4` | Gestione e interrogazione di una rubrica document-oriented | MongoDB · NoSQL | 🚧 |
 | 4 · extra | Dataset MovieLens `…progetto4_extra` | **Progetto extra, realizzato in autonomia** (oltre al programma) per approfondire la parte NoSQL: creazione di un dataset MovieLens su database colonna-famiglia | Apache Cassandra · NoSQL | 🚧 |
 | 5  | Web scraping `…progetto5` | Scraping dei titoli di una libreria online (pagine statiche e dinamiche) | Python · BeautifulSoup · Selenium | 🚧 |
 | 6  | Preprocessing & Feature Eng. `…progetto6` | Pre-processing di un dataset di rilevazione del tumore al seno | scikit-learn · PCA · SMOTE | 🚧 |
@@ -141,4 +181,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2 e 3 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3 e 4 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
