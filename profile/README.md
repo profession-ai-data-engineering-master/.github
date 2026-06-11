@@ -160,6 +160,42 @@ tecnica di scala *non* serve.
 
 ---
 
+### ✅ Corso 5 · Web Scraping — Scraping di un catalogo di libri online
+
+> [`profession_ai_data_engineering_progetto5`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto5)
+
+Estrazione di dati strutturati — titolo, valutazione, prezzo, disponibilità —
+dal catalogo di una **libreria online** ([books.toscrape.com](https://books.toscrape.com)),
+salvati in CSV per l'analisi di mercato. Il caso di business: **BookSmart
+Solutions** vuole monitorare l'offerta della concorrenza (prezzi, rating,
+disponibilità) per orientare pricing e assortimento.
+
+Più che lo script richiesto, il progetto cura il **giudizio tecnico** e la
+robustezza: riconosciuto che il sito è **statico**, abbandona Selenium per
+**requests** (più semplice e veloce, senza browser) e struttura il codice come
+**pipeline modulare** anziché script monolitico.
+
+**Cosa contiene**
+- 🧱 **Package `bookscraper/`** in moduli a responsabilità singola: navigazione e
+  paginazione (`scraper`), parsing HTML (`parsing`), strutturazione/salvataggio
+  CSV (`storage`), orchestrazione (`pipeline`) — eseguibile con `python -m bookscraper`.
+- 🧭 **Estrazione resiliente per-campo**: l'assenza di un campo non azzera il
+  record (resta `None`); solo i `product_pod` privi di titolo vengono scartati.
+- 🛡️ **Robustezza di rete** come da consegna: **retry** con backoff esponenziale
+  (`tenacity`), **rate limiting** (`ratelimit`) ed encoding UTF-8 forzato.
+
+**Qualità & ingegneria**
+- ✅ **28 test pytest** (coverage **90%**) senza rete: parsing su HTML fixture,
+  `requests` mockato per scraper e pipeline, CSV su file temporanei.
+- 📋 **Logging** console-first leggibile, con output JSON rotante opt-in
+  (`LOG_TO_FILE=1`, compatibile ELK/Kibana).
+- 🧹 **Type hints**, lint/format con **ruff** e **CI GitHub Actions** (ruff +
+  pytest) a ogni push/PR, con **branch protection** su `main`.
+
+**Stack:** Python · requests · BeautifulSoup · pandas · tenacity · pytest · ruff · GitHub Actions
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -168,7 +204,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 5  | Web scraping `…progetto5` | Scraping dei titoli di una libreria online (pagine statiche e dinamiche) | Python · BeautifulSoup · Selenium | 🚧 |
 | 6  | Preprocessing & Feature Eng. `…progetto6` | Pre-processing di un dataset di rilevazione del tumore al seno | scikit-learn · PCA · SMOTE | 🚧 |
 | 7  | Fondamenti ML `…progetto7` | Previsione della progressione del diabete in pazienti a rischio | scikit-learn · regressione · classificazione · clustering | 🚧 |
 | 8  | Big Data su Wikipedia `…progetto8_databricks` · `…_zeppelin` | Processing e analisi dell'intero dump di Wikipedia | Apache Spark · Spark SQL · Databricks · Zeppelin · AWS EMR | 🚧 |
@@ -180,4 +215,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3 e 4 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3, 4 e 5 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
