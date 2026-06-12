@@ -196,6 +196,43 @@ robustezza: riconosciuto che il sito è **statico**, abbandona Selenium per
 
 ---
 
+### ✅ Corso 6 · Preprocessing & Feature Engineering — Pipeline di pre-processing su dati clinici
+
+> [`profession_ai_data_engineering_progetto6`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto6)
+
+Costruzione di un **unico oggetto di preprocessing riutilizzabile** che trasforma un
+dataset clinico grezzo — **Breast Cancer Wisconsin** (569 record, feature numeriche e
+categoriche, valori mancanti diffusi) — in un dataset *feature-ready* per il machine
+learning. Il caso di business: dati sanitari di qualità per modelli diagnostici robusti.
+
+Più che lo svolgimento del notebook, il progetto porta i due **transformer scikit-learn
+custom** allo standard di una **libreria** testata e tipizzata, correggendo le fragilità
+dell'implementazione originale invece di limitarsi a impacchettarla.
+
+**Cosa contiene**
+- 🧱 **Package `preprocessing/`**: due transformer custom (`PipelineWithRowFilter`,
+  `SelectiveTransformerBySkewness`) + factory che assemblano le **3 pipeline** della consegna
+  nel dataset *max-feature* (`FeatureUnion`) — eseguibile con `python -m preprocessing`.
+- 🧭 **Tre pipeline complementari**: imputazione selettiva per simmetria, simmetrizzazione
+  Yeo-Johnson, one-hot/ordinal encoding, discretizzazione, **PCA**, selezione delle feature più
+  informative (ANOVA F), standardizzazione/normalizzazione.
+- 🩺 **Estensioni dell'API sklearn** dove le primitive non bastano: addestrare una pipeline solo
+  su un sottoinsieme di record, applicare un transformer solo alle colonne asimmetriche.
+
+**Qualità & ingegneria**
+- 🧠 **Scelte di modellazione esplicite**: la Pipeline 1 *apprende* i parametri solo dai record
+  positivi (no leakage) ma trasforma tutte le righe → dataset senza NaN strutturali e invariante
+  `fit_transform == fit().transform()`.
+- 🛡️ **Robustezza ai casi degeneri**: colonne costanti o quasi-vuote sempre imputate (la PCA non
+  esplode), categorie mai viste gestite in inferenza, nomi feature unici end-to-end.
+- ✅ **24 test pytest** (oracoli + **property-based** con Hypothesis sui transformer), coverage **97%**.
+- 🧹 **Type hints** completi, lint/format con **ruff**, type checking con **mypy**, **CI GitHub
+  Actions** (ruff + mypy + pytest) a ogni push/PR.
+
+**Stack:** Python · scikit-learn · pandas · Hypothesis · pytest · mypy · ruff · GitHub Actions
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -204,7 +241,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 6  | Preprocessing & Feature Eng. `…progetto6` | Pre-processing di un dataset di rilevazione del tumore al seno | scikit-learn · PCA · SMOTE | 🚧 |
 | 7  | Fondamenti ML `…progetto7` | Previsione della progressione del diabete in pazienti a rischio | scikit-learn · regressione · classificazione · clustering | 🚧 |
 | 8  | Big Data su Wikipedia `…progetto8_databricks` · `…_zeppelin` | Processing e analisi dell'intero dump di Wikipedia | Apache Spark · Spark SQL · Databricks · Zeppelin · AWS EMR | 🚧 |
 | 9  | CryptoData Insights `…progetto9` | Pipeline E2E in cloud per analizzare Bitcoin e Monero | AWS S3 · Glue · Kinesis · Redshift · Step Functions | 🚧 |
@@ -215,4 +251,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3, 4 e 5 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3, 4, 5 e 6 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
