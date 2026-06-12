@@ -205,9 +205,9 @@ dataset clinico grezzo — **Breast Cancer Wisconsin** (569 record, feature nume
 categoriche, valori mancanti diffusi) — in un dataset *feature-ready* per il machine
 learning. Il caso di business: dati sanitari di qualità per modelli diagnostici robusti.
 
-Più che lo svolgimento del notebook, il progetto porta i due **transformer scikit-learn
-custom** allo standard di una **libreria** testata e tipizzata, correggendo le fragilità
-dell'implementazione originale invece di limitarsi a impacchettarla.
+Più che il semplice svolgimento dell'esercizio, il progetto porta i due **transformer
+scikit-learn custom** allo standard di una **libreria** testata e tipizzata, correggendo le
+fragilità dell'implementazione originale invece di limitarsi a impacchettarla.
 
 **Cosa contiene**
 - 🧱 **Package `preprocessing/`**: due transformer custom (`PipelineWithRowFilter`,
