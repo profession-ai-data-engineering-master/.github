@@ -233,6 +233,36 @@ fragilità dell'implementazione originale invece di limitarsi a impacchettarla.
 
 ---
 
+### ✅ Corso 7 · Fondamenti di Machine Learning — Previsione della progressione del diabete
+
+> [`profession_ai_data_engineering_progetto7`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto7)
+
+Modello di **regressione** che stima la progressione del diabete a un anno dai
+dati clinici di un paziente — dataset **Diabetes** di scikit-learn (442 pazienti),
+caricato grezzo per svolgere da zero il preprocessing. Il caso di business:
+**MedPredict** vuole uno strumento di supporto decisionale per personalizzare i
+piani terapeutici.
+
+Più che un notebook monolitico, il progetto **separa la narrazione dalla logica**:
+il notebook resta il racconto guidato da **OSEMN**, mentre tutta la logica vive in
+un package testato, type-checkato e coperto al **99%** — leggibilità della showcase
+e robustezza ingegneristica insieme.
+
+**Cosa contiene**
+- 🧱 **Package `diabetes/`**: caricamento dati, transformer di feature engineering, factory delle pipeline e dei modelli, valutazione in cross-validation, utility di plotting — il notebook importa e orchestra.
+- 🧭 **Preprocessing tutto in pipeline scikit-learn**: imputazione, encoding one-hot, **6 feature derivate a base clinica** (interazione età×BMI, rapporto HDL, ecc.), trasformazione Yeo-Johnson e RobustScaler — il fit avviene dentro ogni fold della CV, **nessun data leakage**.
+- 📊 **Base vs avanzato**: `SelectKBest` + `LinearRegression` confrontato con **`ElasticNetCV`** (tuning interno via CV annidata); il modello scelto migliora **R² 0.444 → 0.476** (−5.6% MSE), risultati onesti per un dataset intrinsecamente rumoroso.
+
+**Qualità & ingegneria**
+- 🧠 **Feature engineering robusta**: i ColumnTransformer mantengono i nomi base delle colonne (`verbose_feature_names_out=False`) → le feature derivate non dipendono dai nomi degli step della pipeline.
+- 🛡️ **Correttezza**: de-duplicazione spostata fuori dalla pipeline (niente righe rimosse dentro un transformer, che disallineerebbe X e y), deviazioni standard delle metriche corrette, interpretazione finale derivata dai risultati reali.
+- ✅ **21 test pytest** (coverage **99%**): fit/predict end-to-end, controllo no-leakage, riproducibilità per seed, grafici in backend headless.
+- 🧹 **Type hints**, lint/format con **ruff**, type checking con **mypy**, **CI GitHub Actions** (ruff + mypy + pytest con soglia di coverage) a ogni push/PR.
+
+**Stack:** Python · scikit-learn · pandas · Matplotlib · seaborn · pytest · mypy · ruff · GitHub Actions
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -241,7 +271,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 7  | Fondamenti ML `…progetto7` | Previsione della progressione del diabete in pazienti a rischio | scikit-learn · regressione · classificazione · clustering | 🚧 |
 | 8  | Big Data su Wikipedia `…progetto8_databricks` · `…_zeppelin` | Processing e analisi dell'intero dump di Wikipedia | Apache Spark · Spark SQL · Databricks · Zeppelin · AWS EMR | 🚧 |
 | 9  | CryptoData Insights `…progetto9` | Pipeline E2E in cloud per analizzare Bitcoin e Monero | AWS S3 · Glue · Kinesis · Redshift · Step Functions | 🚧 |
 | 10 | Dataset film `…progetto10` | Orchestrazione di una pipeline di trasformazione su un dataset di film | Azure Data Factory · Blob Storage · Stream Analytics | 🚧 |
@@ -251,4 +280,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3, 4, 5 e 6 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3, 4, 5, 6 e 7 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
