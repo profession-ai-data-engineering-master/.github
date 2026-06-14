@@ -310,6 +310,53 @@ precedenti.
 
 ---
 
+### ✅ Corso 9 · Cloud Data Engineering con AWS — Pipeline E2E per l'analisi di criptovalute
+
+> [`profession_ai_data_engineering_progetto9`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto9)
+
+Pipeline di Data Engineering **End-to-End su AWS** che ingerisce, pulisce e
+arricchisce i dati di mercato di **Bitcoin (BTC)** e **Monero (XMR)**, correlando
+il prezzo giornaliero con l'interesse di ricerca settimanale di **Google Trends** e
+rendendo i risultati interrogabili su data warehouse e dashboard. Il caso di
+business: **CryptoData Insights** vuole trasformare dati grezzi di mercato in
+insight azionabili in un contesto volatile.
+
+A differenza degli altri progetti — librerie di codice testate in locale — questo
+è un progetto **infrastrutturale**, costruito interamente sui servizi gestiti AWS.
+Il deliverable è quindi un **report tecnico** che documenta l'architettura, le
+scelte implementative e le esecuzioni reali sulla console, con il codice prodotto
+(PySpark, Amazon States Language, SQL) integralmente riportato.
+
+> 📄 **[Report completo del progetto (PDF)](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto9/blob/main/Report_Progetto9.pdf)**
+
+**Cosa contiene**
+- 🗄️ **Storage a livelli (Medallion)** su Amazon S3 — Bronze (CSV grezzi) → Silver
+  (Parquet puliti) → Gold (dataset analitico) — come *source of truth* centrale.
+- ⚙️ **Job ETL Glue (PySpark) parametrico** (`--coin BTC|XMR`): un'unica codebase per
+  entrambe le valute, con pulizia prezzi (parsing date, *forward-fill* dei sentinel
+  `-1`), **media mobile a 10 giorni** e **join temporale robusto** prezzo↔trend sulla
+  settimana di appartenenza (`date_trunc`), con i trend mancanti mantenuti `NULL`.
+- 🔀 **Orchestrazione con Step Functions**: stato *Parallel* che esegue le pipeline
+  BTC e XMR simultaneamente, con gestione degli errori (`Catch` → `Fail`).
+- 📊 **Warehouse & BI serverless**: caricamento su **Redshift Serverless** (`COPY` da
+  S3) e dashboard **QuickSight** alimentate via **Athena** sul Gold layer.
+
+**Architettura & ingegneria cloud**
+- 🔐 **IAM a privilegio minimo**: una policy/ruolo dedicato per servizio (Glue,
+  Step Functions, Redshift), con permessi limitati esclusivamente ai bucket del progetto.
+- 🧩 **Design parametrico**: un solo Glue Job riutilizzabile invece di script
+  duplicati, con i parametri valuta iniettati dall'orchestratore.
+- 🏛️ **Pattern Lakehouse**: separazione fra layer di calcolo (Redshift) e di
+  visualizzazione (QuickSight → Athena → S3), senza duplicazione fisica del dato.
+- 🧱 **Versioning degli script ETL** su S3 (`v1`/`v2`/`latest`) per disaccoppiare il
+  ciclo di vita del codice dalla definizione del job.
+- 📝 **Report riproducibile** in **Typst** (compilabile da sorgente) con diagramma
+  architetturale e screenshot delle esecuzioni andate a buon fine.
+
+**Stack:** AWS S3 · AWS Glue (PySpark) · AWS Step Functions · Amazon Redshift Serverless · Amazon Athena · Amazon QuickSight · IAM · Typst
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -318,7 +365,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 9  | CryptoData Insights `…progetto9` | Pipeline E2E in cloud per analizzare Bitcoin e Monero | AWS S3 · Glue · Kinesis · Redshift · Step Functions | 🚧 |
 | 10 | Dataset film `…progetto10` | Orchestrazione di una pipeline di trasformazione su un dataset di film | Azure Data Factory · Blob Storage · Stream Analytics | 🚧 |
 | 11 | Dati pazienti `…progetto11` | Data management & security dei dati clinici di un ospedale (RBAC, GDPR) | Snowflake · Data Warehouse | 🚧 |
 
@@ -326,4 +372,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti da 1 a 8 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti da 1 a 9 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
