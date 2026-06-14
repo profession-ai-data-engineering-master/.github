@@ -8,9 +8,9 @@ all'analisi dati, dai database SQL/NoSQL ai Big Data, fino alle pipeline cloud
 end-to-end. Percorso completato e **certificato**.
 
 Ogni progetto nasce da un caso di business reale del corrispondente corso. I
-repository vengono **sistemati e documentati in modo incrementale**: questo
-indice viene aggiornato man mano, e ogni progetto passa da 🚧 *in lavorazione* a
-✅ *pronto* una volta completati refactoring e documentazione.
+repository sono stati **sistemati e documentati** portandoli a uno standard di
+qualità uniforme — README curato, codice e documentazione, con test e CI dove la
+natura del progetto lo consente: **tutti gli 11 progetti sono pronti** ✅.
 
 **Stack del percorso:** Python · NumPy/Pandas · SQL (MySQL/MariaDB) · NoSQL
 (MongoDB, Cassandra, DynamoDB, Neo4j) · BeautifulSoup/Selenium · scikit-learn ·
@@ -396,18 +396,41 @@ applicativo**, con la trasformazione interamente dichiarativa.
 
 ---
 
-## In lavorazione
+### ✅ Corso 11 · Data Warehousing con Snowflake — Data Warehouse clinico con RBAC e GDPR
 
-Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
-seguono il programma ufficiale del master; verranno censiti qui in dettaglio
-man mano che vengono completati.
+> [`profession_ai_data_engineering_progetto11`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto11)
 
-| Corso | Progetto · Repository | Tema | Stack | Stato |
-|:-----:|-----------------------|------|-------|:-----:|
-| 11 | Dati pazienti `…progetto11` | Data management & security dei dati clinici di un ospedale (RBAC, GDPR) | Snowflake · Data Warehouse | 🚧 |
+Data Warehouse per i dati clinici di un ospedale su **Snowflake**: ingestione da un Data
+Lake S3, modello a livelli **RAW → CURATED → ANALYTICS**, **star schema** per la BI, pipeline
+**ELT idempotente** orchestrata da task chain e un impianto di sicurezza **security-by-design**
+(RBAC + dynamic data masking) per la conformità **GDPR**. Il caso di business: **HealthDataPro**
+deve centralizzare dati clinici frammentati in modo sicuro, scalabile e conforme.
 
-> I nomi repository sono abbreviati con il prefisso comune `profession_ai_data_engineering_`.
+La consegna chiedeva il solo schema dati; il progetto va oltre, realizzando un data warehouse
+**end-to-end e verificabile**. È un progetto **infrastrutturale**: il deliverable è un **report
+tecnico** con architettura, DDL completo ed esecuzioni reali su Snowflake.
+
+> 📄 **[Report completo del progetto (PDF)](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto11/blob/main/Report_Progetto11.pdf)**
+
+**Cosa contiene**
+- 🗄️ **DW a livelli** (`RAW` mirror → `CURATED` standardizzazione → `ANALYTICS` consumo) più uno
+  schema tecnico `PIPELINE`, con 3 virtual warehouse dimensionati per carico.
+- ⭐ **Star schema** (`DIM_PAZIENTE/REPARTO/DISPOSITIVO`, `FACT_RICOVERI/MISURAZIONI`, bridge diagnosi).
+- 🔄 **ELT idempotente**: task chain che invoca 3 stored procedure — `COPY INTO` fail-fast,
+  `MERGE` su business key con dedup deterministica e **quarantena** dei record orfani.
+- ☁️ **Ingestione S3 → Snowflake** via **Storage Integration** (IAM role cross-account, *least
+  privilege*, nessuna credenziale statica).
+
+**Architettura & ingegneria cloud**
+- 🔐 **Security-by-design**: RBAC nativo con 3 ruoli e gerarchia (engineer/analyst/compliance),
+  scrittura riservata ai ruoli tecnici, accesso degli analisti confinato al layer di consumo.
+- 🕶️ **Dynamic Data Masking GDPR**: le PII residue di `DIM_PAZIENTE` (città, data di nascita)
+  sono mascherate a runtime in base al ruolo; identificatori diretti esclusi by design.
+- 🧪 **Dati sintetici** (libreria SDV) per sviluppare e testare senza alcun rischio privacy.
+- 📝 **Report riproducibile** in **Typst** con diagramma, DDL e screenshot delle esecuzioni.
+
+**Stack:** Snowflake · SQL · Snowflake Tasks & Stored Procedures · Storage Integration · AWS S3 / IAM · Dynamic Data Masking · RBAC · Typst
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti da 1 a 10 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Tutti gli 11 progetti del percorso sono stati sistemati e censiti in dettaglio.</sub>
