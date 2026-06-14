@@ -263,6 +263,53 @@ e robustezza ingegneristica insieme.
 
 ---
 
+### ✅ Corso 8 · Big Data con Apache Spark — Analisi e classificazione di articoli di Wikipedia
+
+> [`profession_ai_data_engineering_progetto8`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto8)
+
+Analisi esplorativa e **classificazione automatica** di ~153.000 articoli di
+Wikipedia in 15 categorie tematiche, con **Apache Spark**. Il caso di business:
+**Wikidata Insights** vuole capire la distribuzione dei contenuti e disporre di
+un classificatore che categorizzi i nuovi articoli a partire dal testo.
+
+Più che il semplice svolgimento, il progetto **riscatta un esercizio nato
+cloud-bound**: l'originale girava su **Zeppelin/Databricks**, vincolato dai
+limiti del piano gratuito (download capato, `spark.ml` non disponibile). Qui è
+**portato a Spark in locale** — `SparkSession` esplicita, nessun magic Zeppelin,
+zero dipendenze cloud a pagamento — così **chiunque può riprodurlo gratis**, e
+allo stesso tempo è ingegnerizzato allo standard libreria come i progetti
+precedenti.
+
+**Cosa contiene**
+- 🧱 **Package `wikianalysis/`** (`data` · `eda` · `model` · `plots`) con la
+  logica testabile; il **notebook** resta la narrazione **OSEMN** che importa e
+  orchestra.
+- 🧭 **EDA su Spark**: conteggi e lunghezze per categoria, **word cloud** dei
+  token più frequenti. Emerge che dopo la pulizia il dataset **si dimezza**
+  (153.232 → 75.523 righe: metà sono duplicati) ed è **fortemente sbilanciato**
+  (`medicine` ~8.300 articoli vs `politics` ~240).
+- 🤖 **Classificatore Spark ML**: pipeline `StringIndexer → Tokenizer →
+  StopWordsRemover → CountVectorizer → StandardScaler → LogisticRegression`,
+  **accuracy ~0.845** come baseline interpretabile, con confusion matrix e token
+  più influenti per categoria.
+
+**Qualità & ingegneria**
+- ☁️➡️💻 **Port Zeppelin/Databricks → Spark locale**: `SparkSession`
+  riproducibile, download dati idempotente e **campione versionato** per
+  test/CI, così l'intero progetto gira senza cluster a pagamento.
+- 🐛 **Bug di pipeline corretto**: lo `StopWordsRemover` ora alimenta davvero il
+  `CountVectorizer` (colonna `filtered`), step prima ignorato — pipeline
+  semanticamente corretta, con regressione a copertura.
+- ✅ **30 test pytest** con una `SparkSession` **locale** eseguiti sul campione
+  versionato (coverage **87%**), inclusa la regressione del bug e la
+  riproducibilità del seed.
+- 🧹 **Type hints**, lint/format con **ruff**, type checking con **mypy** e **CI
+  GitHub Actions con Java + Spark** (ruff + mypy + pytest) a ogni push/PR.
+
+**Stack:** Python · Apache Spark / PySpark · Spark ML · pandas · Matplotlib · seaborn · pytest · mypy · ruff · GitHub Actions
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -271,7 +318,6 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 8  | Big Data su Wikipedia `…progetto8_databricks` · `…_zeppelin` | Processing e analisi dell'intero dump di Wikipedia | Apache Spark · Spark SQL · Databricks · Zeppelin · AWS EMR | 🚧 |
 | 9  | CryptoData Insights `…progetto9` | Pipeline E2E in cloud per analizzare Bitcoin e Monero | AWS S3 · Glue · Kinesis · Redshift · Step Functions | 🚧 |
 | 10 | Dataset film `…progetto10` | Orchestrazione di una pipeline di trasformazione su un dataset di film | Azure Data Factory · Blob Storage · Stream Analytics | 🚧 |
 | 11 | Dati pazienti `…progetto11` | Data management & security dei dati clinici di un ospedale (RBAC, GDPR) | Snowflake · Data Warehouse | 🚧 |
@@ -280,4 +326,4 @@ man mano che vengono completati.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti 1, 2, 3, 4, 5, 6 e 7 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti da 1 a 8 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
