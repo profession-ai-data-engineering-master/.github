@@ -357,6 +357,45 @@ scelte implementative e le esecuzioni reali sulla console, con il codice prodott
 
 ---
 
+### ✅ Corso 10 · Data Engineering su Azure — Pipeline ETL per un dataset di film
+
+> [`profession_ai_data_engineering_progetto10`](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto10)
+
+Pipeline di orchestrazione dati su **Azure Data Factory** che ingerisce un catalogo
+di film da **Azure Blob Storage**, lo pulisce e trasforma con un **Mapping Data Flow** e
+scrive un dataset filtrato e standardizzato su un container di output. Il caso di
+business: **CineData Solutions** vuole automatizzare la preparazione di dati
+cinematografici eterogenei per le piattaforme di distribuzione.
+
+Come il progetto 9, è un progetto **infrastrutturale** costruito sui servizi gestiti
+Azure: il deliverable è un **report tecnico** che documenta la creazione delle risorse
+nel portale, la logica del Data Flow e le esecuzioni reali — il tutto **senza codice
+applicativo**, con la trasformazione interamente dichiarativa.
+
+> 📄 **[Report completo del progetto (PDF)](https://github.com/profession-ai-data-engineering-master/profession_ai_data_engineering_progetto10/blob/main/Report_Progetto10.pdf)**
+
+**Cosa contiene**
+- 🗂️ **Ingestione da Blob Storage**: container `input`/`output` separati per dati grezzi
+  ed elaborati, con Linked Service e Dataset DelimitedText configurati in ADF.
+- 🔧 **Mapping Data Flow** (`Source → Derived Column → Filter → Derived Column → Select → Sink`):
+  conversione **sicura** del rating testuale in numero (validazione `regexMatch`, valori
+  sporchi → `null`), **filtro di qualità** (`Valutazione > 7`), **normalizzazione dei titoli**
+  in formato catalogo (`Kid, The` → `The Kid`) e rinomina dello schema in italiano.
+- 🎬 **Output pulito**: file singolo `movies_filtered.csv` con colonne `Id`, `Film`,
+  `Genere`, `Valutazione`, scritto in *single partition*.
+
+**Architettura & ingegneria cloud**
+- 🧭 **Trasformazione dichiarativa**: tutta la logica vive nel Data Flow `df_movies_transform`,
+  orchestrato dalla pipeline `pl_movies_transform` — nessuno script da mantenere.
+- 🛡️ **Robustezza sui dati reali**: gestione di header anomali nel CSV, titoli con
+  virgole/virgolette e rating non numerici, con conversione difensiva prima del filtro.
+- 📝 **Report riproducibile** in **Typst** (compilabile da sorgente) con diagramma del
+  flusso, snippet JSON di pipeline e data flow, e screenshot delle esecuzioni *Succeeded*.
+
+**Stack:** Azure Data Factory · Mapping Data Flow · Azure Blob Storage · Linked Services / Datasets · Typst
+
+---
+
 ## In lavorazione
 
 Progetti in fase di sistemazione/refactoring. Il tema e lo stack riportati
@@ -365,11 +404,10 @@ man mano che vengono completati.
 
 | Corso | Progetto · Repository | Tema | Stack | Stato |
 |:-----:|-----------------------|------|-------|:-----:|
-| 10 | Dataset film `…progetto10` | Orchestrazione di una pipeline di trasformazione su un dataset di film | Azure Data Factory · Blob Storage · Stream Analytics | 🚧 |
 | 11 | Dati pazienti `…progetto11` | Data management & security dei dati clinici di un ospedale (RBAC, GDPR) | Snowflake · Data Warehouse | 🚧 |
 
 > I nomi repository sono abbreviati con il prefisso comune `profession_ai_data_engineering_`.
 
 ---
 
-<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti da 1 a 9 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
+<sub>Indice mantenuto manualmente. Ultimo aggiornamento: progetti da 1 a 10 censiti in dettaglio; restanti progetti mappati al programma ufficiale e in fase di sistemazione.</sub>
