@@ -430,7 +430,3 @@ tecnico** con architettura, DDL completo ed esecuzioni reali su Snowflake.
 - 📝 **Report riproducibile** in **Typst** con diagramma, DDL e screenshot delle esecuzioni.
 
 **Stack:** Snowflake · SQL · Snowflake Tasks & Stored Procedures · Storage Integration · AWS S3 / IAM · Dynamic Data Masking · RBAC · Typst
-
----
-
-<sub>Indice mantenuto manualmente. Tutti gli 11 progetti del percorso sono stati sistemati e censiti in dettaglio.</sub>
